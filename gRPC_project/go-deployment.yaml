@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-go-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-go-server
+  template:
+    metadata:
+      labels:
+        app: grpc-go-server
+    spec:
+      containers:
+      - name: grpc-go-server
+        image: jihye3535/grpc-go-server:latest
+        ports:
+        - containerPort: 50051
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        livenessProbe:
+          tcpSocket:
+            port: 50051
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-go-service
+spec:
+  selector:
+    app: grpc-go-server
+  ports:
+  - protocol: TCP
+    port: 50051
+    targetPort: 50051

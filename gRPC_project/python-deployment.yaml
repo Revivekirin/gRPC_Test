@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-python-client
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: grpc-python-client
+  template:
+    metadata:
+      labels:
+        app: grpc-python-client
+    spec:
+      containers:
+      - name: grpc-python-client
+        image: jihye3535/grpc-python-client:latest
+        env:
+        - name: TARGET_SERVER
+          value: grpc-go-service:50051  
+
+

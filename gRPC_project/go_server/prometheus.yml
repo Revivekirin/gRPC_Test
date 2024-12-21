@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s  # 데이터 수집 주기
+
+scrape_configs:
+  - job_name: "grpc_server"
+    static_configs:
+      - targets: [""grpc-go-service.monitoring.svc.cluster.local:2112""]  # Prometheus HTTP 엔드포인트

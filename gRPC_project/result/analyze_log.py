@@ -61,7 +61,7 @@ def analyze_logs(processed, num_bins=3):
     plt.show()
 
 if __name__ == "__main__":
-    log_file = "/Users/kimjihe/Desktop/gRPC_project/server.log"
+    log_file = "/Users/kimjihe/Desktop/git/gRPC_Test/gRPC_project/server.log"
     processed = parse_logs(log_file)
     analyze_logs(processed, num_bins=3)  
 
